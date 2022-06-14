@@ -1,18 +1,13 @@
 '''
-Project:
-Author:
-Course:
-Date:
-
-Description:
-
-Lessons Learned:
-
+Project:BST
+Author:Aaron Zelenski
+Course:CS 2420
+Date:6 - 9 - 2022
 '''
 
-from pathlib import Path
-from string import whitespace, punctuation
+import string
 from bst import BST
+the_tree = BST()
 
 
 class Pair:
@@ -55,20 +50,28 @@ class Pair:
 
 
 def make_tree():
-    ''' A helper function to build the tree.
+    """reads txt file and can test all routines in here"""
 
-    The test code depends on this function being available from main.
-    :param: None
-    :returns: A binary search tree
-    '''
-    pass
+    with open("around-the-world-in-80-days-3.txt", "r", encoding="utf-8") as story_file:
+        line = story_file.read()
+        any_punctuation = string.punctuation
+        for char in line:
+            if not char.isspace() and char not in any_punctuation:
+                pair = Pair(char, 1)
+                the_tree.add(pair)
+
+    print(the_tree)
+    # print()
+    # print()
+    # print(the_tree.rebalance())
+    story_file.close()
+
+    return the_tree
 
 
 def main():
-    ''' Program kicks off here.
-
-    '''
-    pass
+    """contains make_tree routine only"""
+    make_tree()
 
 
 if __name__ == "__main__":
